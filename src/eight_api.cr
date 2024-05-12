@@ -77,7 +77,7 @@ class EightSleep
       output = Compress::Gzip::Reader.new resp.body_io
       days = JSON.parse(output).as_h["days"].as_a
       days.each do |day|
-        date = Time.parse(day["day"].as_s, "%Y-%m-%d", Time::Location::UTC)
+        date = Time.parse(day["day"].as_s, "%Y-%m-%d", Time::Location.load(@auth_config.timezone)).at_beginning_of_day
         sleep_data = day["sleepQualityScore"].as_h
         hrv = sleep_data["hrv"].as_h["average"].as_f
         bpm = sleep_data["heartRate"].as_h["average"].as_f

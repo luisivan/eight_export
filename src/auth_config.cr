@@ -12,11 +12,12 @@ end
 class AuthConfig
   property email : String?
   property password : String?
-  property timezone : String?
+  property timezone : String
   property session : Session
 
   def initialize
     @session = Session.new("", Time.unix(0), "")
+    @timezone = "Etc/UTC"
     begin
       auth_file = File.read(AUTH_PATH)
       auth_config = YAML.parse(auth_file)

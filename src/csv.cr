@@ -30,14 +30,16 @@ class CSVFile
     @headers_added = false
   end
 
-  def append(timestamp, hrv, bpm)
+  def append(date, hrv, bpm)
     CSV.build(@file) do |csv|
       if !@headers_added
         csv.row CSV_HEADERS[0], CSV_HEADERS[1], CSV_HEADERS[2]
         @headers_added = true
       end
-      date = Time.unix(timestamp).to_s("%Y-%m-%d")
-      csv.row date, hrv, bpm
+      formatted_date = date.to_s("%Y-%m-%d %H:%M:%S %z")
+      formatted_hrv = hrv.round.format(decimal_places: 0)
+      formatted_bpm = bpm.round.format(decimal_places: 0)
+      csv.row formatted_date, formatted_hrv, formatted_bpm
     end
   end
 end

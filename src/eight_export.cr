@@ -15,8 +15,6 @@ arguments = Arguments.new "./entries.csv"
 OptionParser.parse do |parser|
   parser.banner = "Usage: eight_export [arguments]"
   parser.on("-f DATE", "--from=DATE", "Export from date (in format %Y-%m-%d)") { |date|
-    # TODO: Local timezone
-    puts date
     arguments.from_date = Time.parse(date, "%Y-%m-%d", Time::Location::UTC)
   }
   parser.on("-o FILE", "--output=FILE", "Export to file path") { |output_file|
@@ -38,7 +36,7 @@ client = EightSleep.new
 from_date = arguments.from_date || csv.last_date
 entries = client.fetch_entries from_date
 entries.each do |entry|
-  csv.append(entry.date.to_unix, entry.hrv, entry.bpm)
+  csv.append(entry.date, entry.hrv, entry.bpm)
 end
 
 puts "Exported entries from #{from_date.to_s("%Y-%m-%d")} to #{arguments.file_path}"
