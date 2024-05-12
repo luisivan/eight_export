@@ -4,7 +4,7 @@ Exports your average HRV and BPM per day from Eight Sleep to a CSV file, which t
 
 ### Installation
 
-It's a Crystal program, so you just need to download and run the binary (`eight_export`). Please read the code (it's really short) before running random binary programs in your machine.
+It's a Crystal program, so you just need to download and run the binary (`eight_export`). It's a macOS binary, binaries for other platforms haven't been compiled. Please read the code (it's really short) before running random binary programs in your machine.
 
 ## Usage
 
