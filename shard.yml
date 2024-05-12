@@ -1,0 +1,17 @@
+name: eight-health
+version: 0.1.0
+
+authors:
+  - Luis Cuende <l@luis.com>
+
+targets:
+  eight-health:
+    main: src/eight-health.cr
+
+crystal: ">= 1.12.1"
+
+dependencies:
+  crest:
+    github: mamantoha/crest
+
+license: MIT
