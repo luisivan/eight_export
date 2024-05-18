@@ -24,7 +24,7 @@ class CSVFile
     end
     csv = CSV.parse(csv_contents)
     if File.exists?(file_path) && csv[-1]?
-      @last_date = Time.parse(csv[-1][0], "%Y-%m-%d", Time::Location::UTC)
+      @last_date = Time.parse(csv[-1][0], "%Y-%m-%d", Time::Location::UTC) + 1.days
     end
     @file = File.open(file_path, "w")
     @headers_added = false
